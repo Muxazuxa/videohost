@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class = "container">
+    <div class="col-md-16">
+<h2>Home</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.video }}
+    {% csrf_token %}
+    {{ form.name }}
+    <br>
+    <button type="submit">Submit</button>
+</form>
+    </div>
+    <hr>
+{% for video in videos %}
+    <!--<video width="320" height="240">-->
+        <!--<source src="{{ video.video }}" type="mp4">-->
+    <!--</video>-->
+    <div class="container text-center">
+ <iframe  width="560" height="315" src="{{video.video}}"
+         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
+          picture-in-picture" allowfullscreen></iframe>
+    <br>
+<h2><i>{{video.name}}</i></h2>
+    <br>
+<h4>{{video.uploaded}}</h4>
+{% endfor %}
+    </div>
+</div>
+{% endblock %}
